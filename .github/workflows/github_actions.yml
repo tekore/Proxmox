@@ -18,15 +18,16 @@ jobs:
           version: ${{ env.PRODUCT_VERSION }}
 
       - name: Packer init
-        run: packer init
+        run: packer init ./k8_node.pkr.hcl
 
       - name: Run Packer Validate
-        run: packer validate
+        run: packer validate ./k8_node.pkr.hcl
 
       - name: Build Artifact
-        run: packer build
+        run: packer build ./k8_node.pkr.hcl
 
   Terraform:
+    needs: Packer
     name: Run Terraform
     runs-on: ubuntu-latest
     defaults:
