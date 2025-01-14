@@ -52,7 +52,6 @@ source "proxmox-iso" "ubuntu-kickstart" {
     bridge = "vmbr0"
     model  = "virtio"
   }
-  depends_on = [null.download-iso]
 }
 build {
   sources = ["source.proxmox-iso.ubuntu-kickstart"]
