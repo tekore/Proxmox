@@ -43,14 +43,16 @@ source "proxmox-iso" "ubuntu-kickstart" {
   }
   boot_iso {
     type = "scsi"
-    iso_url = "https://releases.ubuntu.com/14.04.6/ubuntu-14.04.6-server-amd64.iso"
+    iso_file = "https://releases.ubuntu.com/14.04.6/ubuntu-14.04.6-server-amd64.iso"
     unmount = true
     iso_checksum = "md5:401e9a5528bdae53b85f63996ae83773"
+    iso_storage_pool = "local"
   }
   network_adapters {
     bridge = "vmbr0"
     model  = "virtio"
   }
+  depends_on = [null.download-iso]
 }
 build {
   sources = ["source.proxmox-iso.ubuntu-kickstart"]

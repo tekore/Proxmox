@@ -23,12 +23,6 @@ jobs:
       - name: Run Packer Validate
         run: packer validate ./k8_node.pkr.hcl
 
-      - name: Set up SSL certificate to encrypt traffic
-        run: |
-          mkdir -p /usr/local/share/ca-certificates
-          echo "$PROXMOX_SSL_CERT" | base64 -d > /usr/local/share/ca-certificates/proxmox.crt
-          update-ca-certificates
-
       - name: Build Artifact
         run: packer build ./k8_node.pkr.hcl
 
@@ -57,12 +51,6 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-
-      - name: Set up SSL certificate to encrypt traffic
-        run: |
-          mkdir -p /usr/local/share/ca-certificates
-          echo "$PROXMOX_SSL_CERT" | base64 -d > /usr/local/share/ca-certificates/proxmox.crt
-          update-ca-certificates
 
       - name: Terraform Plan
         run: terraform plan -out tfplan
