@@ -21,7 +21,7 @@ variable "proxmox_url" {
 
 source "proxmox-iso" "ubuntu-kickstart" {
   node                     = "my-proxmox"
-  password                 = "notapassword"
+  password                 = "notapasswordlol"
   proxmox_url              = "${var.proxmox_url}"
   ssh_password             = "${var.ssh_password}"
   ssh_timeout              = "1m"
