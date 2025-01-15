@@ -9,7 +9,7 @@ jobs:
       run:
         working-directory: ./packer
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repogit s
         uses: actions/checkout@v4
 
       - name: Setup SSH Key
@@ -26,7 +26,11 @@ jobs:
         run: packer init ./k8_node.pkr.hcl
 
       - name: Run Packer Validate
-        run: packer validate ./k8_node.pkr.hcl
+        run: packer validate \
+         -var "ssh_username=${{ secrets.PROXMOX_SSH_USERNAME }}" \
+         -var "ssh_password=${{ secrets.PROXMOX_SSH_PASSWORD }}" \
+         -var "proxmox_url=${{ secrets.PROXMOX_URL }}" \
+         ./k8_node.pkr.hcl
 
       - name: Build Artifact
         run: packer build \
