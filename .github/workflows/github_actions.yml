@@ -9,8 +9,13 @@ jobs:
       run:
         working-directory: ./packer
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+            ssh-private-key: ${{ secrets.PROXMOX_VE_SSH_PRIVATE_KEY }}
 
       - name: Setup Packer
         uses: hashicorp/setup-packer@main
@@ -24,7 +29,11 @@ jobs:
         run: packer validate ./k8_node.pkr.hcl
 
       - name: Build Artifact
-        run: packer build ./k8_node.pkr.hcl
+        run: packer build \
+         -var "ssh_username=${{ secrets.PROXMOX_SSH_USERNAME }}" \
+         -var "ssh_password=${{ secrets.PROXMOX_SSH_PASSWORD }}" \
+         -var "proxmox_url=${{ secrets.PROXMOX_URL }}" \
+         ./k8_node.pkr.hcl
 
   Terraform:
     needs: Packer

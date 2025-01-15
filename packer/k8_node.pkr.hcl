@@ -7,26 +7,28 @@ packer {
   }
 }
 
-variable "password" {
+variable "ssh_username" {
   type    = string
-  default = "supersecret"
 }
 
-variable "username" {
+variable "ssh_password" {
   type    = string
-  default = "apiuser@pve"
+}
+
+variable "proxmox_url" {
+  type    = string
 }
 
 source "proxmox-iso" "ubuntu-kickstart" {
   node                     = "my-proxmox"
-  password                 = "${var.password}"
-  proxmox_url              = "https://my-proxmox.my-domain:8006/api2/json"
-  ssh_password             = "Notanactualpassword"
+  password                 = ""
+  proxmox_url              = "${var.proxmox_url}"
+  ssh_password             = "${var.ssh_password}"
   ssh_timeout              = "1m"
-  ssh_username             = "Notanaztualuser"
+  ssh_username             = "${var.ssh_username}"
   template_description     = "Ubuntu-Server-24.04, generated on ${timestamp()}"
-  template_name            = "Ubuntu-24"
-  username                 = "${var.username}"
+  template_name            = "Ubuntu-Server24.04"
+  username                 = "${var.ssh_username}"
   boot_command             = ["<up><tab> ip=dhcp inst.cmdline inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter>"]
   boot_wait                = "10s"
   http_directory           = "config"
