@@ -28,7 +28,7 @@ source "proxmox-iso" "ubuntu-kickstart" {
   ssh_username             = "${var.ssh_username}"
   template_description     = "Ubuntu-Server-24.04, generated on ${timestamp()}"
   template_name            = "Ubuntu-Server24.04"
-  username                 = "${var.ssh_username}@pam"
+  username                 = "${var.ssh_username}@pve"
   boot_command             = ["<up><tab> ip=dhcp inst.cmdline inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter>"]
   boot_wait                = "10s"
   http_directory           = "config"
