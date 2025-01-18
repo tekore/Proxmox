@@ -11,10 +11,9 @@ jobs:
     env:
       TF_VAR_r2_access_key: ${{ secrets.R2_ACCESS_KEY }}
       TF_VAR_r2_secret_access_key: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-      TF_VAR_proxmox_private_key: ${{ secrets.PROXMOX_VE_SSH_PRIVATE_KEY }}
-      TF_VAR_proxmox_username: ${{ secrets.PROXMOX_VE_USERNAME }}
       PROXMOX_VE_ENDPOINT: ${{ secrets.PROXMOX_VE_ENDPOINT }}
-      #PROXMOX_VE_PASSWORD: ${{ secrets.PROXMOX_VE_PASSWORD }}
+      PROXMOX_VE_USERNAME: ${{ secrets.PROXMOX_VE_USERNAME }}
+      PROXMOX_VE_PASSWORD: ${{ secrets.PROXMOX_VE_PASSWORD }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

@@ -9,8 +9,7 @@ terraform {
 
 provider "proxmox" {
   ssh {
-    agent = false
-    username = var.proxmox_username
-    private_key = var.proxmox_private_key
+    insecure = true
+    agent = true
   }
 }
