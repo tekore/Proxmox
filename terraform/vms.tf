@@ -48,7 +48,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
       username = "ubuntu"
     }
 
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
+    #user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
   }
 
   operating_system {
