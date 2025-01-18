@@ -2,10 +2,8 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   name        = "terraform-provider-proxmox-ubuntu-vm"
   description = "Managed by Terraform"
   tags        = ["terraform", "ubuntu"]
-
   node_name = "onprem"
   vm_id     = 4321
-
   agent {
     # read 'Qemu guest agent' section, change to true only when ready
     enabled = false
@@ -30,7 +28,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   }
 
   disk {
-    datastore_id = "local-lvm"
+    datastore_id = "local"
     file_id      = proxmox_virtual_environment_download_file.latest_ubuntu_22_jammy_qcow2_img.id
     interface    = "scsi0"
   }
