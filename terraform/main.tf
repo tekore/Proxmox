@@ -8,8 +8,8 @@ terraform {
 }
 
 provider "proxmox" {
+  insecure = true
   ssh {
-    insecure = true
     agent = true
   }
 }
