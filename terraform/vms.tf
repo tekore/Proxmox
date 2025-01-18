@@ -56,7 +56,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   #}
 
   #serial_device {}
-#}
+}
 
 resource "proxmox_virtual_environment_download_file" "latest_ubuntu_22_jammy_qcow2_img" {
   content_type = "iso"
