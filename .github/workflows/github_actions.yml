@@ -24,13 +24,6 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "$PROXMOX_VE_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H example.com >> ~/.ssh/known_hosts
-
       - name: Terraform Init
         run: terraform init -backend-config="access_key=$TF_VAR_r2_access_key" -backend-config="secret_key=$TF_VAR_r2_secret_access_key"
 
