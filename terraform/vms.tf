@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   description = "Managed by Terraform"
   tags        = ["terraform", "ubuntu"]
   node_name = "onprem"
-  #vm_id     = 4321
+  vm_id     = 9000
   #agent {
     # read 'Qemu guest agent' section, change to true only when ready
   #  enabled = false
@@ -11,11 +11,11 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   # if agent is not enabled, the VM may not be able to shutdown properly, and may need to be forced off
   #stop_on_destroy = true
 
-  #startup {
-  #  order      = "3"
-  #  up_delay   = "60"
-  #  down_delay = "60"
-  #}
+  startup {
+    order      = "2"
+    up_delay   = "10"
+    down_delay = "10"
+  }
 
   cpu {
     cores        = 2
