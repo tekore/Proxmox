@@ -14,7 +14,7 @@ jobs:
       PROXMOX_VE_SSH_PRIVATE_KEY: ${{ secrets.PROXMOX_VE_SSH_PRIVATE_KEY }}
       PROXMOX_VE_ENDPOINT: ${{ secrets.PROXMOX_VE_ENDPOINT }}
       PROXMOX_VE_USERNAME: ${{ secrets.PROXMOX_VE_USERNAME }}
-      PROXMOX_VE_PASSWORD: ${{ secrets.PROXMOX_VE_PASSWORD }}
+      #PROXMOX_VE_PASSWORD: ${{ secrets.PROXMOX_VE_PASSWORD }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -23,6 +23,13 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PROXMOX_VE_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H example.com >> ~/.ssh/known_hosts
 
       - name: Terraform Init
         run: terraform init -backend-config="access_key=$TF_VAR_r2_access_key" -backend-config="secret_key=$TF_VAR_r2_secret_access_key"
