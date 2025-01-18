@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   description = "Managed by Terraform"
   tags        = ["terraform", "ubuntu"]
 
-  node_name = "first-node"
+  node_name = "onprem"
   vm_id     = 4321
 
   agent {
