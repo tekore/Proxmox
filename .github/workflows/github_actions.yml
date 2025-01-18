@@ -21,9 +21,6 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Check working dir
-        run: pwd && ls -la
-
       - name: Terraform Init
         run: terraform init -backend-config="access_key=$TF_VAR_r2_access_key" -backend-config="secret_key=$TF_VAR_r2_secret_access_key"
 
