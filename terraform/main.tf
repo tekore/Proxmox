@@ -10,7 +10,7 @@ terraform {
 provider "proxmox" {
   ssh {
     agent = false
-    username = var.PROXMOX_VE_USERNAME
-    private_key = var.PROXMOX_VE_SSH_PRIVATE_KEY
+    username = var.proxmox_username
+    private_key = var.proxmox_private_key
   }
 }
