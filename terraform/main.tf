@@ -10,6 +10,11 @@ terraform {
 provider "proxmox" {
   insecure = true
   ssh {
+    node {
+      name    = "onprem"
+      address = var.PROXMOX_ADDRESS
+      port = var.PROXMOX_SSH_PORT
+    }
     agent = true
   }
 }

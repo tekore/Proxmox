@@ -11,6 +11,8 @@ jobs:
     env:
       TF_VAR_r2_access_key: ${{ secrets.R2_ACCESS_KEY }}
       TF_VAR_r2_secret_access_key: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      TF_VAR_PROXMOX_ADDRESS: ${{ secrets.PROXMOX_ADDRESS }}
+      TF_VAR_PROXMOX_SSH_PORT: ${{ secrets.PROXMOX_SSH_PORT }}
       PROXMOX_VE_ENDPOINT: ${{ secrets.PROXMOX_VE_ENDPOINT }}
       PROXMOX_VE_USERNAME: ${{ secrets.PROXMOX_VE_USERNAME }}
       PROXMOX_VE_PASSWORD: ${{ secrets.PROXMOX_VE_PASSWORD }}
